@@ -15,6 +15,7 @@ public class EncodingModule {
     public void encode() throws IOException {
         String readFromFile = readable.read();
         String encodedString = Base64.getEncoder().encodeToString(readFromFile.getBytes());
+
         writable.write(encodedString);
     }
 }
