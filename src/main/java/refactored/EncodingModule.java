@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.Base64;
 
 public class EncodingModule {
-    MyFileWriter myFileWriter = new MyFileWriter();
+    MyFileWriter myFileWriter = new MyFileWriter("fileEncrypted.txt");
     MyDatabaseWriter myDatabaseWriter = new MyDatabaseWriter();
-    MyFileReader myFileReader = new MyFileReader();
+    MyFileReader myFileReader = new MyFileReader("src/main/java/refactored/fileToBeEncrypted.txt");
 
     public void encodeFromFileToFile() throws IOException {
         String readFromFile = myFileReader.read();
