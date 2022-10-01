@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyDatabase {
-    private Map<Integer, String> data = new HashMap<>();
+    private final Map<Integer, String> data = new HashMap<>();
     private int count = 0;
 
     public int write(String inputString) {
