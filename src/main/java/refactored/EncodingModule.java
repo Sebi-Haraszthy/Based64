@@ -4,10 +4,13 @@ import java.io.*;
 import java.util.Base64;
 
 public class EncodingModule {
+    MyFileWriter myFileWriter = new MyFileWriter();
+    MyDatabaseWriter myDatabaseWriter = new MyDatabaseWriter();
+
     public void encodeFromFileToFile() throws IOException {
         String readFromFile = read("src/main/java/refactored/fileToBeEncrypted.txt");
         String encodedString = Base64.getEncoder().encodeToString(readFromFile.getBytes());
-        write(encodedString);
+        myFileWriter.write(encodedString);
     }
 
     public String read(String fileName) throws IOException {
@@ -24,23 +27,9 @@ public class EncodingModule {
         return result.toString();
     }
 
-    public void write(String encodedString) throws IOException {
-        BufferedWriter writer;
-        writer = new BufferedWriter(new FileWriter("fileEncrypted.txt"));
-
-        writer.write(encodedString);
-        writer.close();
-    }
-
     public void encodeFromFileToDatabase() throws IOException {
         String readFromFile = read("src/main/java/refactored/fileToBeEncrypted.txt");
         String encodedString = Base64.getEncoder().encodeToString(readFromFile.getBytes());
-        writeToDatabase(encodedString);
-    }
-
-    public void writeToDatabase(String encodedString) {
-        MyDatabase database = new MyDatabase();
-        database.write(encodedString);
-        System.out.println(database);
+        myDatabaseWriter.write(encodedString);
     }
 }
