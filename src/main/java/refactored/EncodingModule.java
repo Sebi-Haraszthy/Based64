@@ -4,19 +4,17 @@ import java.io.*;
 import java.util.Base64;
 
 public class EncodingModule {
-    MyFileWriter myFileWriter = new MyFileWriter("fileEncrypted.txt");
-    MyDatabaseWriter myDatabaseWriter = new MyDatabaseWriter();
-    MyFileReader myFileReader = new MyFileReader("src/main/java/refactored/fileToBeEncrypted.txt");
+    private Readable readable;
+    private Writable writable;
 
-    public void encodeFromFileToFile() throws IOException {
-        String readFromFile = myFileReader.read();
-        String encodedString = Base64.getEncoder().encodeToString(readFromFile.getBytes());
-        myFileWriter.write(encodedString);
+    public EncodingModule(Readable readable, Writable writable) {
+        this.readable = readable;
+        this.writable = writable;
     }
 
-    public void encodeFromFileToDatabase() throws IOException {
-        String readFromFile = myFileReader.read();
+    public void encode() throws IOException {
+        String readFromFile = readable.read();
         String encodedString = Base64.getEncoder().encodeToString(readFromFile.getBytes());
-        myDatabaseWriter.write(encodedString);
+        writable.write(encodedString);
     }
 }
